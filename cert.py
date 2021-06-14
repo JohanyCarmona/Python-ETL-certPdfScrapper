@@ -41,8 +41,8 @@ PRINTOUT_DATE_PATTERN = r'(?<=Impreso el ).*' #General case
 #REGISTRY_CIRCLES_PATTERN = r'(?<=CIRCULO REGISTRAL: )[0-9]+[ ]*[-]?[ ]*[A-Z]+[ ]*DEPTO:[ ]*([A-Z]+[ ]*)+MUNICIPIO:[ ]*([A-Z]+[ ]*)+VEREDA:([ ]*[A-Z]+)+' #Particular case
 REGISTRY_CIRCLES_PATTERN = r'(?<=CIRCULO REGISTRAL: ).*' #General case
 
-#CADASTRAL_CODE_PATTERN = r'(?<=CODIGO CATASTRAL:  )[0-9]+[ ]*COD[ ]*CATASTRAL[ ]*[A-Z]+:([ ]*[A-Z]+)+' #Particular case
-CADASTRAL_CODE_PATTERN = r'(?<=CODIGO CATASTRAL:  ).*' #General case
+#CADASTRAL_CODE_PATTERN = r'(?<=CODIGO CATASTRAL: )[0-9]+[ ]*COD[ ]*CATASTRAL[ ]*[A-Z]+:([ ]*[A-Z]+)+' #Particular case
+CADASTRAL_CODE_PATTERN = r'(?<=CODIGO CATASTRAL: ).*' #General case
 
 #FOLIO_STATE_PATTERN = r'[A-Z]+(?=(\n)ESTADO DEL FOLIO:)' #Particular case
 FOLIO_STATE_PATTERN = r'[a-z|A-Z]+(?=(\n)ESTADO DEL FOLIO:)' #General case
@@ -125,14 +125,32 @@ class Cert():
         del dataRecords
         
         return _dataRecords
+    
+    def __generateJSON(self):
+        records = {
+                    "Documento anotación" : self.records['documentRecords'],
+                    "Radicación anotación" : self.records['resideRecords'],
+                    "Especificación anotación" : self.records['specificationRecords']
+        }
+        
+        output = {
+                    "Número matrícula" : self.registerNumber,
+                    "Fecha impresión" : self.printoutDate,
+                    "Círculo registral" : self.registryCircles,
+                    "Código catastral" : self.cadastralCode,
+                    "Estado folio" : self.folioState,
+                    "Dirección inmueble" : self.propertyAddress,
+                    "Tipo predio" : self.propertyType,
+                    "Anotaciones" : records
+        }
+        return output 
         
     def __writeJSON(self,fileName):
         fileName = search(PDF_FORMAT_PATTERN, fileName).group(0)
         fileName = fileName+JSON_FORMAT
+
         with open(fileName,'w') as file:
-            dump(self.__dict__, file)
-        print()
-        print(self.__dict__)
+            dump(self.__generateJSON(), file)
         print()
         print("'%s' successfully created"%(fileName))
         
