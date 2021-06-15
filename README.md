@@ -24,3 +24,7 @@ pdfplumber Third Party Library
 GitHub: https://github.com/jsvine/pdfplumber
 #####
 Installation: pip install pdfplumber
+### Virtual Environment: 
+VEnv Installation: ./environment.sh 
+#####
+VEnv Execution: ./environment/bin/python3 cert.py [fileName]
