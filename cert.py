@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 """
-Created on Jun 13, 2020
+Updated on Jun 14, 2020
 
 By Johany A. Carmona C.
 GitHub: https://github.com/JohanyCarmona/
@@ -25,7 +25,7 @@ pdfplumber Third Party Library
 GitHub: https://github.com/jsvine/pdfplumber
 Installation: pip install pdfplumber
 """
-import pdfplumber
+from pdfplumber import open as openPdf
 
 """
 GENERAL REGEX PATTERNS
@@ -99,7 +99,7 @@ class Cert():
     
     def __readPDF(self, fileName):
         content = ""
-        with pdfplumber.open(fileName) as pdf:
+        with openPdf(fileName) as pdf:
             for page in pdf.pages:
                 content = content + page.extract_text()
             pdf.close()
