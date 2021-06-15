@@ -28,3 +28,33 @@ Installation: pip install pdfplumber
 VEnv Installation: ./environment.sh 
 #####
 VEnv Execution: ./environment/bin/python3 cert.py [fileName]
+
+
+### Windows:
+Generate Virtual Environment
+#####
+On Windows, invoke the venv command as follows:
+#####
+c:\>c:\Python35\python3 -m venv --p python3 c:\<path>\environment
+#####
+Alternatively, if you configured the PATH and PATHEXT variables for your Python installation, use:
+#####
+c:\>python3 -m venv --p python3 c:\<path>\environment
+#####
+Enable Virtual Environment on Windows PowerShell
+#####
+PS C:\> <path>\environment\bin\Activate.ps1
+#####
+Install requirements
+#####
+c:\> python3 -m pip install -r requirements.txt
+#####
+Disable Virtual Environment
+#####
+deactivate
+#####
+To Execute python script, use
+#####
+c:\> <path>\environment\bin\python3 <path>\cert.py [fileName]
+#####
+Where: [path] = C:\Users\'Username'
