@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 """
-Updated on Jun 14, 2020
+Updated on Jun 15, 2020
 
 By Johany A. Carmona C.
 GitHub: https://github.com/JohanyCarmona/
@@ -127,21 +127,28 @@ class Cert():
         return _dataRecords
     
     def __generateJSON(self):
-        records = {
-                    "Documento anotación" : self.records['documentRecords'],
-                    "Radicación anotación" : self.records['resideRecords'],
-                    "Especificación anotación" : self.records['specificationRecords']
-        }
+        
+        amount = len(self.records['documentRecords'])
+        
+        records = {}
+        
+        for i in range(amount):
+            record = {
+                    "documento_anotacion" : self.records['documentRecords'][i],
+                    "radicacion_anotacion" : self.records['resideRecords'][i],
+                    "especificacion_anotacion" : self.records['specificationRecords'][i]
+            }
+            records[("anotacion_%i"%(i+1))] = record
         
         output = {
-                    "Número matrícula" : self.registerNumber,
-                    "Fecha impresión" : self.printoutDate,
-                    "Círculo registral" : self.registryCircles,
-                    "Código catastral" : self.cadastralCode,
-                    "Estado folio" : self.folioState,
-                    "Dirección inmueble" : self.propertyAddress,
-                    "Tipo predio" : self.propertyType,
-                    "Anotaciones" : records
+                    "numero_matricula" : self.registerNumber,
+                    "fecha_impresion" : self.printoutDate,
+                    "circulo_registral" : self.registryCircles,
+                    "codigo_catastral" : self.cadastralCode,
+                    "estado_folio" : self.folioState,
+                    "direccion_inmueble" : self.propertyAddress,
+                    "tipo_predio" : self.propertyType,
+                    "anotaciones" : records
         }
         return output 
         
