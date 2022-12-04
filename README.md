@@ -4,7 +4,7 @@ Created on Jun 13, 2020
 ### By Johany A. Carmona C.
 GitHub: https://github.com/JohanyCarmona/
 #####
-Email: johany.carmona@pm.me; johany.carmona@tuta.io; johany.carmona@udea.edu.co
+Email: johany.carmona@tuta.io
 
 ### About: Legal Tradition Certificate PDF Scrapper
 Info: Extract Main Data from a PDF file, then transform it to Data Object and finally load it to a JSON file.
